@@ -1,10 +1,11 @@
 import React from 'react';
+import logo from './../images/logo.jpg';
 
 function Header() {
     return (
         <div>
             <header>
-                <img src = './images/logo.jpg' alt = "LMS logo" width = "10%" />
+                <img src = '../images/logo.jpg' alt = "LMS logo" width = "10%" />
                 <h1>LMS - Learning Management System</h1>
             </header>
             <div class = "navigation">

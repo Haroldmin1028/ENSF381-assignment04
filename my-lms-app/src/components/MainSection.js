@@ -1,58 +1,126 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import {courses} from './../data/courses.js';
+import {testimonials} from './../data/testimonials.js';
 
 export default function MainSection() {
-    const [id, setId] = useState(null);
-    const [name, setName] = useState(null);
-    const [instructor, setInstructor] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [duration, setDuration] = useState(null);
-    const [image, setImage] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    var courseList = [];
+    while (courseList.length < 3) {
+        const index = Math.floor(Math.random() * 10);
+        if (!courseList.includes(index)) {
+            courseList.push(index);
+        }
+    }
+    var firstCourse = courses[courseList[0]];
+    var secondCourse = courses[courseList[1]];
+    var thirdCourse = courses[courseList[2]];
 
-    function fetchData() {
-        fetch('./data/courses.js')
-        .then((response) => response.json())
-        .then((data) => {
-            let {id, name, instructor, description, duration, image} = data.results[0];
-            setId(id);
-            setName(name);
-            setInstructor(instructor);
-            setDescription(description);
-            setDuration(duration);
-            setImage(image);
-        })
-        .catch((error) => {
-            console.error('Failed to fetch data:', error.message)
-        })
-        .finally(() => {
-            setIsLoading(false);
-        });
+    var testimonialList = [];
+    while (testimonialList.length < 2) {
+        const index = Math.floor(Math.random() * 4);
+        if (!testimonialList.includes(index)) {
+            testimonialList.push(index);
+        }
+    }
+    var firstTestimonial = testimonials[testimonialList[0]];
+    var secondTestimonial = testimonials[testimonialList[1]];
+    const oneStar = "★☆☆☆☆";
+    const twoStar = "★★☆☆☆";
+    const threeStar = "★★★☆☆";
+    const fourStar = "★★★★☆";
+    const fiveStar = "★★★★★";
+    var firstRating = "";
+    var secondRating = "";
+    
+    if (firstTestimonial.rating == 1) {
+        firstRating = oneStar;
+    }
+    else if (firstTestimonial.rating == 2) {
+        firstRating = twoStar;
+    }
+    else if (firstTestimonial.rating == 3) {
+        firstRating = threeStar;
+    }
+    else if (firstTestimonial.rating == 4) {
+        firstRating = fourStar;
+    }
+    else if (firstTestimonial.rating == 5) {
+        firstRating = fiveStar;
     }
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    if (secondTestimonial.rating == 1) {
+        secondRating = oneStar;
+    }
+    else if (secondTestimonial.rating == 2) {
+        secondRating = twoStar;
+    }
+    else if (secondTestimonial.rating == 3) {
+        secondRating = threeStar;
+    }
+    else if (secondTestimonial.rating == 4) {
+        secondRating = fourStar;
+    }
+    else if (secondTestimonial.rating == 5) {
+        secondRating = fiveStar;
+    }
 
-    //const temp = Math.floor(Math.random() * 10) + 1;
     return (
         <div>
-            <h2>About LMS</h2>
-            <p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track performance efficiently.</p>
-            <h2>Featured Courses</h2>
-            {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <h2>Fetched Data:</h2>
-          <pre>{id}</pre>
-          <pre>{name}</pre>
-          <pre>{instructor}</pre>
-          <pre>{description}</pre>
-          <pre>{duration}</pre>
-          <pre>{image}</pre>
-        </div>
-        )
-      }
+            <div>
+                <h2>About LMS</h2>
+                <p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track performance efficiently.</p>
+            </div>
+            <div>
+                <table border = "0">
+                    <tr>
+                        <td>
+                            <img src = {firstCourse.image}></img><br></br>
+                            Course ID: {firstCourse.id}<br></br><br></br>
+                            Course Name: {firstCourse.name}<br></br><br></br>
+                            Instructor: {firstCourse.instructor}<br></br><br></br>
+                            Description: {firstCourse.description}<br></br><br></br>
+                            Duration: {firstCourse.duration}<br></br><br></br>
+                        </td>
+                        <td>
+                            <img src = {secondCourse.image}></img><br></br>
+                            Course ID: {secondCourse.id}<br></br><br></br>
+                            Course Name: {secondCourse.name}<br></br><br></br>
+                            Instructor: {secondCourse.instructor}<br></br><br></br>
+                            Description: {secondCourse.description}<br></br><br></br>
+                            Duration: {secondCourse.duration}<br></br><br></br>
+                        </td>
+                        <td>
+                            <img src = {thirdCourse.image}></img><br></br>
+                            Course ID: {thirdCourse.id}<br></br><br></br>
+                            Course Name: {thirdCourse.name}<br></br><br></br>
+                            Instructor: {thirdCourse.instructor}<br></br><br></br>
+                            Description: {thirdCourse.description}<br></br><br></br>
+                            Duration: {thirdCourse.duration}<br></br><br></br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h2>Testimonials</h2>
+                <table border = "0">
+                    <tr>
+                        <td>
+                            Student Name: {firstTestimonial.studentName}<br></br><br></br>
+                            Course Name: {firstTestimonial.courseName}<br></br><br></br>
+                            Review: {firstTestimonial.review}<br></br><br></br>
+                            Rating: {firstRating}<br></br><br></br>
+                        </td>
+                        <td>
+                            Student Name: {secondTestimonial.studentName}<br></br><br></br>
+                            Course Name: {secondTestimonial.courseName}<br></br><br></br>
+                            Review: {secondTestimonial.review}<br></br><br></br>
+                            Rating: {secondRating}<br></br><br></br>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     );
 }

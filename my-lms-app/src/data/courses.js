@@ -1,4 +1,4 @@
-const courses = [
+export const courses = [
     {
     id: 1,
     name: "Web Development",
@@ -9,74 +9,74 @@ const courses = [
     }, 
     {
     id: 2,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Acting I",
+    instructor: "Dr. Leonardo DiCaprio",
+    description: "Learn the basics of acting.",
+    duration: "16 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 3,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Stand-up Comedy",
+    instructor: "Dr. Eugene Levy",
+    description: "Make people laugh with words.",
+    duration: "1 week",
     image: "images/course1.jpg"
     },
     {
     id: 4,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Discrete Mathematics",
+    instructor: "Dr. Thi Dinh",
+    description: "Proofs.",
+    duration: "20 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 5,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Object Oriented Programming",
+    instructor: "Dr. Ann Barcomb",
+    description: "Learn Java and apply OOP principles.",
+    duration: "20 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 6,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Data Structures and Algorithms",
+    instructor: "Dr. Lorenzo de Carli",
+    description: "Master data structures and algorithms.",
+    duration: "22 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 7,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Acting II",
+    instructor: "Dr. Michelle Yeoh",
+    description: "Learn advanced acting.",
+    duration: "21 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 8,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Physical Education",
+    instructor: "Dr. LeBron James",
+    description: "Improve your physique and strength.",
+    duration: "7 weeks",
     image: "images/course1.jpg"
     },    
     {
     id: 9,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Wizardry and Sorcery",
+    instructor: "Dr. Harry Potter",
+    description: "Learn spells, flying, and magic.",
+    duration: "90 weeks",
     image: "images/course1.jpg"
     },
     {
     id: 10,
-    name: "Web Development",
-    instructor: "Dr. John Smith",
-    description: "Master HTML, CSS, and JavaScript.",
-    duration: "8 weeks",
+    name: "Football not Soccer",
+    instructor: "Dr. Robert Lewandowski",
+    description: "Learn from everyone's favourite player.",
+    duration: "240 weeks",
     image: "images/course1.jpg"
     }
 ];

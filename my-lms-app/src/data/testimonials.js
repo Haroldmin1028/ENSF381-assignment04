@@ -1,4 +1,4 @@
-const testimonials = [
+export const testimonials = [
     {
         studentName: "Alice Johnson",
         courseName: "Web Development",
@@ -7,22 +7,20 @@ const testimonials = [
     },
     {
         studentName: "Heung-min Son",
-        courseName: "", //needs to be valid in courses.js
+        courseName: "Acting II",
         review: "Instructor cannot teach.",
         rating: 1
     },
     {
         studentName: "Kylian Mbappe",
-        courseName: "Web Development",
+        courseName: "Football not Soccer",
         review: "Amazing instructor, engaging content!",
-        rating: 5
+        rating: 4
     },
     {
         studentName: "Mo Salah",
-        courseName: "",
-        review: "Interesting content taught poorly.",
+        courseName: "Discrete Mathematics",
+        review: "Interesting content taught okay.",
         rating: 3
     }
 ];
-
-export default testimonials;
