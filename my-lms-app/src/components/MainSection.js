@@ -1,7 +1,6 @@
 import React from 'react';
 import {courses} from './../data/courses.js';
 import {testimonials} from './../data/testimonials.js';
-import course1 from './../images/course1.jpg';
 
 export default function MainSection() {
     var courseList = [];

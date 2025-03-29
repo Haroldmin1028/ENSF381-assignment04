@@ -4,7 +4,7 @@ import Header from './components/Header.js';
 import LoginForm from './components/LoginForm.js';
 import Footer from './components/Footer.js';
 
-function LoginForm() {
+function Login() {
     return (
         <div>
             <Header />
@@ -14,4 +14,4 @@ function LoginForm() {
     );
 };
 
-export default LoginForm;
+export default Login;

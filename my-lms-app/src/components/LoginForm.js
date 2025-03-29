@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
-import AuthMessage from './components/AuthMessage.js';
-import DisplayStatus from './components/DisplayStatus.js';
+//import './App.css';
+/* import AuthMessage from './components/AuthMessage.js';
+import DisplayStatus from './components/DisplayStatus.js'; */
 
 function LoginForm () {
     return (
