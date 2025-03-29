@@ -1,3 +1,6 @@
+import course1 from '../images/course1.jpg';
+import course2 from '../images/course2.jpg';
+
 export const courses = [
     {
     id: 1,
@@ -5,7 +8,7 @@ export const courses = [
     instructor: "Dr. John Smith",
     description: "Master HTML, CSS, and JavaScript.",
     duration: "8 weeks",
-    image: "images/course1.jpg"
+    image: course1
     }, 
     {
     id: 2,
@@ -13,7 +16,7 @@ export const courses = [
     instructor: "Dr. Leonardo DiCaprio",
     description: "Learn the basics of acting.",
     duration: "16 weeks",
-    image: "images/course1.jpg"
+    image: course1
     },
     {
     id: 3,
@@ -21,7 +24,7 @@ export const courses = [
     instructor: "Dr. Eugene Levy",
     description: "Make people laugh with words.",
     duration: "1 week",
-    image: "images/course1.jpg"
+    image: course2
     },
     {
     id: 4,
@@ -29,7 +32,7 @@ export const courses = [
     instructor: "Dr. Thi Dinh",
     description: "Proofs.",
     duration: "20 weeks",
-    image: "images/course1.jpg"
+    image: course2
     },
     {
     id: 5,
@@ -37,7 +40,7 @@ export const courses = [
     instructor: "Dr. Ann Barcomb",
     description: "Learn Java and apply OOP principles.",
     duration: "20 weeks",
-    image: "images/course1.jpg"
+    image: course1
     },
     {
     id: 6,
@@ -45,7 +48,7 @@ export const courses = [
     instructor: "Dr. Lorenzo de Carli",
     description: "Master data structures and algorithms.",
     duration: "22 weeks",
-    image: "images/course1.jpg"
+    image: course1
     },
     {
     id: 7,
@@ -53,7 +56,7 @@ export const courses = [
     instructor: "Dr. Michelle Yeoh",
     description: "Learn advanced acting.",
     duration: "21 weeks",
-    image: "images/course1.jpg"
+    image: course1
     },
     {
     id: 8,
@@ -61,7 +64,7 @@ export const courses = [
     instructor: "Dr. LeBron James",
     description: "Improve your physique and strength.",
     duration: "7 weeks",
-    image: "images/course1.jpg"
+    image: course2
     },    
     {
     id: 9,
@@ -69,7 +72,7 @@ export const courses = [
     instructor: "Dr. Harry Potter",
     description: "Learn spells, flying, and magic.",
     duration: "90 weeks",
-    image: "images/course1.jpg"
+    image: course2
     },
     {
     id: 10,
@@ -77,7 +80,7 @@ export const courses = [
     instructor: "Dr. Robert Lewandowski",
     description: "Learn from everyone's favourite player.",
     duration: "240 weeks",
-    image: "images/course1.jpg"
+    image: course2
     }
 ];
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {courses} from './../data/courses.js';
 import {testimonials} from './../data/testimonials.js';
+import course1 from './../images/course1.jpg';
 
 export default function MainSection() {
     var courseList = [];
@@ -70,26 +71,27 @@ export default function MainSection() {
                 <p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track performance efficiently.</p>
             </div>
             <div>
+                <h2>Featured Courses</h2>
                 <table border = "0">
                     <tr>
-                        <td>
-                            <img src = {firstCourse.image}></img><br></br>
+                        <td width = "33%">
+                            <img src = {firstCourse.image} width = "100%" /><br></br>
                             Course ID: {firstCourse.id}<br></br><br></br>
                             Course Name: {firstCourse.name}<br></br><br></br>
                             Instructor: {firstCourse.instructor}<br></br><br></br>
                             Description: {firstCourse.description}<br></br><br></br>
                             Duration: {firstCourse.duration}<br></br><br></br>
                         </td>
-                        <td>
-                            <img src = {secondCourse.image}></img><br></br>
+                        <td width = "33%">
+                            <img src = {secondCourse.image} width = "100%" /><br></br>
                             Course ID: {secondCourse.id}<br></br><br></br>
                             Course Name: {secondCourse.name}<br></br><br></br>
                             Instructor: {secondCourse.instructor}<br></br><br></br>
                             Description: {secondCourse.description}<br></br><br></br>
                             Duration: {secondCourse.duration}<br></br><br></br>
                         </td>
-                        <td>
-                            <img src = {thirdCourse.image}></img><br></br>
+                        <td width = "33%">
+                            <img src = {thirdCourse.image} width = "100%" /><br></br>
                             Course ID: {thirdCourse.id}<br></br><br></br>
                             Course Name: {thirdCourse.name}<br></br><br></br>
                             Instructor: {thirdCourse.instructor}<br></br><br></br>
@@ -114,8 +116,6 @@ export default function MainSection() {
                             Course Name: {secondTestimonial.courseName}<br></br><br></br>
                             Review: {secondTestimonial.review}<br></br><br></br>
                             Rating: {secondRating}<br></br><br></br>
-                        </td>
-                        <td>
                         </td>
                     </tr>
                 </table>
