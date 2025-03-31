@@ -70,3 +70,45 @@ header h1 {
 .course {
   width: 33%;
 }
+
+.login {
+  display: flex;
+  background-color: #d4d4d4;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 30px;
+  margin-top: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+  border-radius: 30px;
+  box-shadow: 3px 3px 5px 5px #cccccc;
+}
+
+.login input {
+  margin-left: 125px;
+  margin-right: 125px;
+  background-color: lightyellow;
+  padding: 10px;
+  border-radius: 5px;
+  border-color: darkgrey;
+  border-width: 3px;
+}
+
+.loginbutton {
+    color: #ffffff;
+    background-color: #008000;
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 0px;
+    margin-bottom: 10px;
+}
+
+main {
+  text-align: center;
+}
+
+form a {
+  color: #004080;
+  text-decoration: none;
+}
