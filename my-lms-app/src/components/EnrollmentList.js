@@ -22,9 +22,11 @@ const EnrollmentList = () => {
   return (
     <div className="enrollment-list">
       <h2>Enrolled Courses</h2>
+      <div className="enrolled-courses-container">
       {enrolledCourses.map((course) => (
         <EnrolledCourse key={course.id} course={course} dropCourse={dropCourse} />
       ))}
+      </div>
       <p>Total Credit Hours: {totalCreditHours}</p>
     </div>
   );

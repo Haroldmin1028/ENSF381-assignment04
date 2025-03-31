@@ -122,6 +122,76 @@ header h1 {
   background-color: #ffe6e6;
 }
 
+.enrolled-courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.course-catalog {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.course-catalog h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.course-table td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+.course-item {
+  background-color: #d4d4d4;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-item img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.course-item h3 {
+  margin: 10px 0;
+}
+
+.course-item p {
+  color: #555;
+}
+
+.course-item button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.course-item button:hover {
+  background-color: #0056b3;
+}
+
+.enrolled-course {
+  flex: 1 1 300px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 main {
   text-align: center;
 }
