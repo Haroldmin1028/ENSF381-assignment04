@@ -1,17 +1,9 @@
 import React from 'react';
+import "./styles.css";
 
-function DisplayStatus ({ type, message }) {
-    const style = {
-        padding: "10px",
-        marginTop: "10px",
-        borderRadius: "5px",
-        color: type === "success" ? "green" : "red",
-        border: `1px solid ${type === "success" ? "green" : "red"}`,
-        backgroundColor: type === "success" ? "#e6ffe6" : "#ffe6e6"
-    };
-       
+function DisplayStatus ({ type, message }) {       
     return (
-        <div style = {style}>
+        <div className={type === "success" ? "success" : "error"}>
             <p>{message}</p>
         </div>
     );

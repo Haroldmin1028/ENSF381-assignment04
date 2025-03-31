@@ -104,6 +104,24 @@ header h1 {
     margin-bottom: 10px;
 }
 
+.success {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: green;
+  border: 1px solid green;
+  background-color: #e6ffe6;
+}
+
+.error {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: red;
+  border: 1px solid red;
+  background-color: #ffe6e6;
+}
+
 main {
   text-align: center;
 }
