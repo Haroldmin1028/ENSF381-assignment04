@@ -12,7 +12,7 @@ function DisplayStatus = ({ type, message }) => {
 
     return (
         <div style = {style}>
-            <p>{message}</p>
+            <p>{type}: {message}</p>
         </div>
     );
 }
