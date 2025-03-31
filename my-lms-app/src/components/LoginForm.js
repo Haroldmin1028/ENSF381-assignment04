@@ -1,7 +1,10 @@
 import React from 'react';
+import { createContext } from 'react';
 //import './App.css';
 /* import AuthMessage from './components/AuthMessage.js';
 import DisplayStatus from './components/DisplayStatus.js'; */
+const UsernameContext = createContext(null);
+const PasswordContext = createContext(null);
 
 function LoginForm () {
     return (
