@@ -8,7 +8,7 @@ const PasswordContext = createContext(null);
 
 function LoginForm () {
     return (
-        <div class = "login">
+        <><div class="login">
             <label for="name">Username:</label>
             <input type="text" id="name" name="username" required></input>
             <br></br>
@@ -16,6 +16,10 @@ function LoginForm () {
             <input type="password" id="password" name="password" required></input>
             <br></br>
         </div>
+        <UsernameContext.Provider value={document.getElementById("name").textContent()}>
+        </UsernameContext.Provider>
+        <PasswordContext.Provider value={document.getElementById("password").textContent()}>
+        </PasswordContext.Provider></>
     );
 };
 
