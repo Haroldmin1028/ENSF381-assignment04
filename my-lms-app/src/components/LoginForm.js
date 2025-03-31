@@ -7,14 +7,17 @@ function LoginForm () {
     const [inputPassword, setInputPassword] = useState('');
     const [popup, setPopup] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    let type = "success"
 
     function verifyLogin() {
         if (inputUsername == '' || inputPassword == '') {
             setPopup('Username and password required.');
+            type = "error"
             return;
         }
         else if (inputPassword.length < 8) {
             setPopup('Password must be at least 8 characters.');
+            type = "error"
             return;
         }
 
@@ -34,10 +37,12 @@ function LoginForm () {
 
             if (i != data.length) {
                 setPopup('Login successful! Redirecting...');
+                type = "success"
                 setTimeout(() => {window.location.href = "/courses";}, 2000);
             }
             else {
                 setPopup('Invalid username or password!');
+                type = "error"
             }
             
         })
@@ -72,7 +77,7 @@ function LoginForm () {
                 <a href = "">Forgot Password?</a>
             </form>
             
-            <div class = "login-popup"><DisplayStatus message={popup}/></div>
+            <div class = "login-popup"><DisplayStatus message={popup} type={type}/></div>
         </main>
     );
 };
