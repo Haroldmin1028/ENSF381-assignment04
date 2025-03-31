@@ -7,8 +7,10 @@ const CourseCatalog = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   useEffect(() => {
-      const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
-      setEnrolledCourses(savedCourses);
+      const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses"));
+      if (savedCourses) {
+        setEnrolledCourses(savedCourses);
+      }
     }, []);
 
   const enroll = (course) => {

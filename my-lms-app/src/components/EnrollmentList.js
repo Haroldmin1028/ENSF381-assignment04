@@ -16,8 +16,8 @@ const EnrollmentList = () => {
   };
 
   const getDurationFromWeeks = (durationString) => {
-    const match = durationString.match(/(\d+)\s*weeks/);
-    return (match ? parseInt(match[1], 10) : 0) * 5;
+    const match = durationString.match(/(\d+)\s*week(s?)/);
+    return (match ? parseInt(match[1],10) : 0) * 5;
   };
 
 
