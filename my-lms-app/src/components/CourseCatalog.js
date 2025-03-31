@@ -7,14 +7,17 @@ const CourseCatalog = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   useEffect(() => {
-    const savedCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-    setEnrolledCourses(savedCourses);
-  }, []);
+      const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
+      setEnrolledCourses(savedCourses);
+    }, []);
 
   const enroll = (course) => {
-    const updatedCourses = [...enrolledCourses, course];
-    setEnrolledCourses(updatedCourses);
-    localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
+    const isCourseEnrolled = enrolledCourses.some((enrolledCourse) => enrolledCourse.id === course.id);
+    if (!isCourseEnrolled) {
+        const updatedCourses = [...enrolledCourses, course];
+        setEnrolledCourses(updatedCourses);
+        localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
+    }
   };
 
   return (

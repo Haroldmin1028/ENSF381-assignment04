@@ -9,15 +9,19 @@ const EnrollmentList = () => {
     setEnrolledCourses(savedCourses);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledCourses));
-  }, [enrolledCourses]);
-
   const dropCourse = (courseToDrop) => {
-    setEnrolledCourses(enrolledCourses.filter((course) => course.id !== courseToDrop.id));
+    const updatedCourses = enrolledCourses.filter((course) => course.id !== courseToDrop.id);
+    setEnrolledCourses(updatedCourses);
+    localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
   };
 
-  const totalCreditHours = enrolledCourses.reduce((sum, course) => sum + course.creditHours, 0);
+  const getDurationFromWeeks = (durationString) => {
+    const match = durationString.match(/(\d+)\s*weeks/);
+    return (match ? parseInt(match[1], 10) : 0) * 5;
+  };
+
+
+  const totalCreditHours = enrolledCourses.reduce((sum, course) => sum + getDurationFromWeeks(course.duration), 0);
 
   return (
     <div className="enrollment-list">
