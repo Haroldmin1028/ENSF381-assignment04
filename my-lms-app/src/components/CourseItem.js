@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CourseItem = ({ course, enroll }) => {
+const CourseItem = ({ course, enroll, isEnrolled }) => {
   const [showDescription, setShowDescription] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ const CourseItem = ({ course, enroll }) => {
       <h3>{course.name}</h3>
       <p>Instructor: {course.instructor}</p>
       {showDescription && <p className="course-description">{course.description}</p>}
-      <button onClick={() => enroll(course)}>Enroll Now</button>
+      <button onClick={() => enroll(course)} disabled={isEnrolled}>{isEnrolled ? "Enrolled" : "Enroll Now"}</button>
     </div>
   );
 };

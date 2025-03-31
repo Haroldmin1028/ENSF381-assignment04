@@ -60,10 +60,6 @@ function LoginForm () {
         });
     }
 
-    useEffect(() => {
-        verifyLogin();
-    }, []);
-
     return (
         <AuthContext.Provider value={{ username: inputUsername, password: inputPassword }}>
         <main>
@@ -78,13 +74,13 @@ function LoginForm () {
                     <br></br>
                 </div>
                 <br></br>
-                <input type="button" value="Login" class="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
+                <input type="submit" value="Login" class="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
                 <br></br>
                 <a href = "">Forgot Password?</a>
             </form>
             
-            <div class = "login-popup"><DisplayStatus message={popup} type={statusType}/></div>
-            <AuthMessage />
+            {popup && (<div class = "login-popup"><DisplayStatus message={popup} type={statusType}/></div>)}
+
         </main>
         </AuthContext.Provider>
     );
