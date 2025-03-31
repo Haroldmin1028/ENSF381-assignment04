@@ -1,12 +1,10 @@
 import React from 'react';
 import { useContext } from 'react';
-/*import {UsernameContext} from './LoginForm.js';
-import {PasswordContext} from './LoginForm.js';*/
+import {AuthContext} from './LoginForm.js';
 
 
-/*function AuthMessage() {
-    /*const username = useContext(UsernameContext);
-    const password = useContext(PasswordContext);
+function AuthMessage() {
+    const { username, password } = useContext(AuthContext);
     return(
         <div>
             <h3>Authentication Info</h3>
@@ -16,4 +14,4 @@ import {PasswordContext} from './LoginForm.js';*/
     )
 }
 
-export default AuthMessage;*/
+export default AuthMessage;

@@ -1,27 +1,32 @@
+import { createContext } from 'react';
 import React, {useState, useEffect} from 'react';
 import AuthMessage from '../components/AuthMessage.js';
 import DisplayStatus from '../components/DisplayStatus.js';
+
+export const AuthContext = createContext();
 
 function LoginForm () {
     const [inputUsername, setInputUsername] = useState('');
     const [inputPassword, setInputPassword] = useState('');
     const [popup, setPopup] = useState('');
+    const [statusType, setStatusType] = useState("success");
     const [isLoading, setIsLoading] = useState(false);
-    let type = "success"
+
 
     function verifyLogin() {
         if (inputUsername == '' || inputPassword == '') {
             setPopup('Username and password required.');
-            type = "error"
+            setStatusType("error");
             return;
         }
         else if (inputPassword.length < 8) {
             setPopup('Password must be at least 8 characters.');
-            type = "error"
+            setStatusType("error");
             return;
         }
 
         setIsLoading(true);
+
         fetch('https://jsonplaceholder.typicode.com/users')
         .then((response) => response.json())
         .then((data) => {
@@ -37,17 +42,18 @@ function LoginForm () {
 
             if (i != data.length) {
                 setPopup('Login successful! Redirecting...');
-                type = "success"
+                setStatusType("success");
                 setTimeout(() => {window.location.href = "/courses";}, 2000);
             }
             else {
                 setPopup('Invalid username or password!');
-                type = "error"
+                setStatusType("error");
             }
             
         })
         .catch((error) => {
             console.error(error.message);
+            setStatusType("error");
         })
         .finally(() => {
             setIsLoading(false);
@@ -59,6 +65,7 @@ function LoginForm () {
     }, []);
 
     return (
+        <AuthContext.Provider value={{ username: inputUsername, password: inputPassword }}>
         <main>
             <form>
                 <div class = "login">
@@ -69,16 +76,17 @@ function LoginForm () {
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" value={inputPassword} onChange={(e)=>setInputPassword(e.target.value)} required></input>
                     <br></br>
-
                 </div>
                 <br></br>
-                <input type="button" value="Login" class="loginbutton" onClick={verifyLogin}></input>
+                <input type="button" value="Login" class="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
                 <br></br>
                 <a href = "">Forgot Password?</a>
             </form>
             
-            <div class = "login-popup"><DisplayStatus message={popup} type={type}/></div>
+            <div class = "login-popup"><DisplayStatus message={popup} type={statusType}/></div>
+            <AuthMessage />
         </main>
+        </AuthContext.Provider>
     );
 };
 
