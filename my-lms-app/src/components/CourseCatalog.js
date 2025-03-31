@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import CourseItem from "./CourseItem";
 import courses from "./../data/courses.js";
 
@@ -6,8 +6,15 @@ import courses from "./../data/courses.js";
 const CourseCatalog = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
+  useEffect(() => {
+    const savedCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+    setEnrolledCourses(savedCourses);
+  }, []);
+
   const enroll = (course) => {
-    setEnrolledCourses([...enrolledCourses, course]);
+    const updatedCourses = [...enrolledCourses, course];
+    setEnrolledCourses(updatedCourses);
+    localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
   };
 
   return (

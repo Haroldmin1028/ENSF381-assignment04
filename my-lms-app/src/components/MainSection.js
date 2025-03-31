@@ -102,7 +102,7 @@ export default function MainSection() {
             </div>
             <div>
                 <h2>Testimonials</h2>
-                <table border = "0">
+                <table border = "0" width = "100%">
                     <tr>
                         <td>
                             Student Name: {firstTestimonial.studentName}<br></br><br></br>
