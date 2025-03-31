@@ -2,15 +2,17 @@ import React from 'react';
 import { useContext } from 'react';
 import {UsernameContext} from './LoginForm.js';
 import {PasswordContext} from './LoginForm.js';
-import DisplayStatus from './DisplayStatus.js';
+
 
 function AuthMessage() {
     const username = useContext(UsernameContext);
     const password = useContext(PasswordContext);
     return(
         <div>
-            <DisplayStatus type = {type} message = {message}/>
-        </div>
+            <h3>Authentication Info</h3>
+            <p><strong>Username:</strong> {username || "Not entered"}</p>
+            <p><strong>Password:</strong> {password ? "*".repeat(password.length) : "Not entered"}</p>
+    </div>
     )
 }
 
