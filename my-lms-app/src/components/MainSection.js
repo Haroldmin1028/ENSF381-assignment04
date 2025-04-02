@@ -1,6 +1,6 @@
 import React from 'react';
-import {courses} from './../data/courses.js';
-import {testimonials} from './../data/testimonials.js';
+import {courses} from './../backend/courses.json';
+import {testimonials} from './../backend/testimonials.json';
 
 export default function MainSection() {
     var courseList = [];

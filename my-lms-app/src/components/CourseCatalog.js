@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import CourseItem from "./CourseItem";
-import courses from "./../data/courses.js";
+import courses from "../backend/courses.json";
 
 
 const CourseCatalog = () => {
