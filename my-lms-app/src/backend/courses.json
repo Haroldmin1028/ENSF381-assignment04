@@ -1,12 +1,12 @@
 
-const courses = [
+[
     {
     "id": 1,
     "name": "Web Development",
     "instructor": "Dr. John Smith",
     "description": "Master HTML, CSS, and JavaScript.",
     "duration": "8 weeks",
-    "image": require("../images/course1.jpg")
+    "image": "../images/course1.jpg"
     }, 
     {
     "id": 2,
@@ -14,7 +14,7 @@ const courses = [
     "instructor": "Dr. Leonardo DiCaprio",
     "description": "Learn the basics of acting.",
     "duration": "16 weeks",
-    "image": require("../images/course1.jpg")
+    "image": "../images/course1.jpg"
     },
     {
     "id": 3,
@@ -22,7 +22,7 @@ const courses = [
     "instructor": "Dr. Eugene Levy",
     "description": "Make people laugh with words.",
     "duration": "1 week",
-    "image": course2
+    "image": "../images/course2.jpg"
     },
     {
     "id": 4,
@@ -30,7 +30,7 @@ const courses = [
     "instructor": "Dr. Thi Dinh",
     "description": "Proofs.",
     "duration": "20 weeks",
-    "image": course2
+    "image": "../images/course2.jpg"
     },
     {
     "id": 5,
@@ -38,7 +38,7 @@ const courses = [
     "instructor": "Dr. Ann Barcomb",
     "description": "Learn Java and apply OOP principles.",
     "duration": "20 weeks",
-    "image": require("../images/course1.jpg")
+    "image": "../images/course1.jpg"
     },
     {
     "id": 6,
@@ -46,7 +46,7 @@ const courses = [
     "instructor": "Dr. Lorenzo de Carli",
     "description": "Master data structures and algorithms.",
     "duration": "22 weeks",
-    "image": require("../images/course1.jpg")
+    "image": "../images/course1.jpg"
     },
     {
     "id": 7,
@@ -54,7 +54,7 @@ const courses = [
     "instructor": "Dr. Michelle Yeoh",
     "description": "Learn advanced acting.",
     "duration": "21 weeks",
-    "image": require("../images/course1.jpg")
+    "image": "../images/course1.jpg"
     },
     {
     "id": 8,
@@ -62,7 +62,7 @@ const courses = [
     "instructor": "Dr. LeBron James",
     "description": "Improve your physique and strength.",
     "duration": "7 weeks",
-    "image": course2
+    "image": "../images/course2.jpg"
     },    
     {
     "id": 9,
@@ -70,7 +70,7 @@ const courses = [
     "instructor": "Dr. Harry Potter",
     "description": "Learn spells, flying, and magic.",
     "duration": "90 weeks",
-    "image": course2
+    "image": "../images/course2.jpg"
     },
     {
     "id": 10,
@@ -78,6 +78,6 @@ const courses = [
     "instructor": "Dr. Robert Lewandowski",
     "description": "Learn from everyone's favourite player.",
     "duration": "240 weeks",
-    "image": course2
+    "image": "../images/course2.jpg"
     }
 ]

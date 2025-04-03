@@ -1,26 +1,26 @@
-export const testimonials = [
+[
     {
-        studentName: "Alice Johnson",
-        courseName: "Web Development",
-        review: "Excellent course structure!",
-        rating: 5
+        "studentName": "Alice Johnson",
+        "courseName": "Web Development",
+        "review": "Excellent course structure!",
+        "rating": 5
     },
     {
-        studentName: "Heung-min Son",
-        courseName: "Acting II",
-        review: "Instructor cannot teach.",
-        rating: 1
+        "studentName": "Heung-min Son",
+        "courseName": "Acting II",
+        "review": "Instructor cannot teach.",
+        "rating": 1
     },
     {
-        studentName: "Kylian Mbappe",
-        courseName: "Football not Soccer",
-        review: "Amazing instructor, engaging content!",
-        rating: 4
+        "studentName": "Kylian Mbappe",
+        "courseName": "Football not Soccer",
+        "review": "Amazing instructor, engaging content!",
+        "rating": 4
     },
     {
-        studentName: "Mo Salah",
-        courseName: "Discrete Mathematics",
-        review: "Interesting content taught okay.",
-        rating: 3
+        "studentName": "Mo Salah",
+        "courseName": "Discrete Mathematics",
+        "review": "Interesting content taught okay.",
+        "rating": 3
     }
-];
+]

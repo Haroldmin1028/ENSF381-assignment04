@@ -3,6 +3,9 @@ import {courses} from './../backend/courses.json';
 import {testimonials} from './../backend/testimonials.json';
 
 export default function MainSection() {
+    const courses = require('../backend/courses.json');
+    const testimonials = require('../backend/testimonials.json');
+
     var courseList = [];
     while (courseList.length < 3) {
         const index = Math.floor(Math.random() * 10);
