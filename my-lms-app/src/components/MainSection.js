@@ -1,6 +1,6 @@
 import React from 'react';
-import {courses} from './../backend/courses.json';
-import {testimonials} from './../backend/testimonials.json';
+import {courses} from '../backend/courses.json';
+import {testimonials} from '../backend/testimonials.json';
 
 export default function MainSection() {
     const courses = require('../backend/courses.json');
@@ -77,7 +77,7 @@ export default function MainSection() {
                 <table border = "0">
                     <tr>
                         <td width = "33%">
-                            <img src = {firstCourse.image} width = "100%" /><br></br>
+                            <img src = {require(`../images/${firstCourse.image}`)} width = "100%" /><br></br>
                             Course ID: {firstCourse.id}<br></br><br></br>
                             Course Name: {firstCourse.name}<br></br><br></br>
                             Instructor: {firstCourse.instructor}<br></br><br></br>
@@ -85,7 +85,7 @@ export default function MainSection() {
                             Duration: {firstCourse.duration}<br></br><br></br>
                         </td>
                         <td width = "33%">
-                            <img src = {secondCourse.image} width = "100%" /><br></br>
+                            <img src = {require(`../images/${secondCourse.image}`)} width = "100%" /><br></br>
                             Course ID: {secondCourse.id}<br></br><br></br>
                             Course Name: {secondCourse.name}<br></br><br></br>
                             Instructor: {secondCourse.instructor}<br></br><br></br>
@@ -93,7 +93,7 @@ export default function MainSection() {
                             Duration: {secondCourse.duration}<br></br><br></br>
                         </td>
                         <td width = "33%">
-                            <img src = {thirdCourse.image} width = "100%" /><br></br>
+                            <img src = {require(`../images/${thirdCourse.image}`)} width = "100%" /><br></br>
                             Course ID: {thirdCourse.id}<br></br><br></br>
                             Course Name: {thirdCourse.name}<br></br><br></br>
                             Instructor: {thirdCourse.instructor}<br></br><br></br>
