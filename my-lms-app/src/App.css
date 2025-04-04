@@ -245,3 +245,34 @@ form a {
   color: #004080;
   text-decoration: none;
 }
+
+.signupbutton {
+  color: #ffffff;
+  background-color: #4caf50;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+  opacity: 0.5;
+}
+
+.signupbutton:hover {
+  background-color: #45a049;
+  opacity: 1.0
+}
+
+#signup-popup {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+footer {
+  max-width: 100%;
+  background-color: #004080;
+  padding: 10px;
+  text-align: center;
+}
+
+footer p {
+  color: #ffffff;
+}

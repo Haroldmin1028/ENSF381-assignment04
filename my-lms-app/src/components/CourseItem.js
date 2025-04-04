@@ -9,7 +9,7 @@ const CourseItem = ({ course, enroll, isEnrolled }) => {
       onMouseEnter={() => setShowDescription(true)}
       onMouseLeave={() => setShowDescription(false)}
     >
-      <img src={course.image} alt={course.name}/>
+      <img src={require(`../images/${course.image}`)} alt={course.name}/>
       <h3>{course.name}</h3>
       <p>Instructor: {course.instructor}</p>
       {showDescription && <p className="course-description">{course.description}</p>}

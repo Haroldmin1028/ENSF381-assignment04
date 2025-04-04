@@ -4,7 +4,7 @@ import Header from './components/Header.js';
 import RegForm from './components/RegForm.js';
 import Footer from './components/Footer.js';
 
-function Signup() {
+function SignupPage() {
     return (
         <div>
             <Header />
@@ -14,4 +14,4 @@ function Signup() {
     );
 };
 
-export default Signup;
+export default SignupPage;
