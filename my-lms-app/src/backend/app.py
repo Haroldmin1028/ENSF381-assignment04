@@ -4,7 +4,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-students = {}
+#[[id1, username1, password1, email1, [course1, course2, ...]], [id2, username2,...]] OR
+#{id1: [username1, password1, email1, [course1, course2, ...], id2: []]}
+students = []
 
 @app.route('/register', methods = ['POST'])
 def register():
@@ -31,6 +33,7 @@ def login():
     else:
         return jsonify({"success": False, "message": "Invalid username or password"})
 
+# receive data from testimonials.json
 @app.route('/testimonials', methods = ['GET'])
 def testimonials():
     pass
