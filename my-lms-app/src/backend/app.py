@@ -69,7 +69,7 @@ def enroll_courses(student_id):
         if student['id'] == student_id:
             student['courses'].append(new_course)
             return jsonify({"success": True, "message": "Courses enrolled successfully"})
-    return jsonify({"error": "Person not found"})
+    return jsonify({"success": False, "message": "Person not found"})
 
 
 @app.route('/drop/<student_id>', methods = ['DELETE'])
@@ -81,7 +81,7 @@ def delete_courses(student_id):
         if student['id'] == student_id:
             student['courses']= [course for course in students['courses'] if course != course_to_delete] # assuming student[4] is the list of courses
             return jsonify({"success": True, "message": "Course deleted successfully"})
-    return jsonify({"error": "Person not found"})
+    return jsonify({"success": False, "message": "Person not found"})
 
 
 @app.route('/courses', methods = ['GET'])
