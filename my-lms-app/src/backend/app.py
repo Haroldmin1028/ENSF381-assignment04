@@ -27,12 +27,13 @@ def register():
             return jsonify({"success": False, "message": "Username is already taken"})
     
     students.append({
-        "id": str(len(students)),
+        "id": str(len(students) + 1),
         "username": username,
         "password": password,
         "email": email,
         "courses": []
     })
+    #verify sign up info was saved: print(students)
     return jsonify({"success": True, "message": "Signup successful"})
 
 @app.route('/login', methods = ['POST'])
