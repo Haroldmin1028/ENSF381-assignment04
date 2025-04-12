@@ -1,23 +1,28 @@
 import React, {useState, useEffect} from 'react';
 
-export default function MainSection() {
-    const courses = require('../backend/courses.json'); 
-
-    var courseList = [];
-    while (courseList.length < 3) {
-        const index = Math.floor(Math.random() * 10);
-        if (!courseList.includes(index)) {
-            courseList.push(index);
-        }
-    }
-    var firstCourse = courses[courseList[0]];
-    var secondCourse = courses[courseList[1]];
-    var thirdCourse = courses[courseList[2]];
+export default function MainSection() { 
+    const [courses, setCourses] = useState([]);
 
     const [testimonials, setTestimonials] = useState([]);
     const [ratings, setRatings] = useState([]);
 
     useEffect(() => {
+        async function fetchCourses() {
+            const backend = 'http://127.0.0.1:5000/courses';
+            try {
+                const response = await fetch(backend, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const data = await response.json();
+                setCourses([data.course1, data.course2, data.course3])
+            }
+            catch (error) {
+                console.error("Error fetching courses: ", error)
+            }
+        }
+        fetchCourses();
+
         async function fetchTestimonials() {
             const backend = 'http://127.0.0.1:5000/testimonials';
             try {
@@ -28,7 +33,7 @@ export default function MainSection() {
                 const data = await response.json();
 
                 let rating1 = "☆☆☆☆☆";
-                switch (data.get("testimonial1").rating) {
+                switch (data.testimonial1.rating) {
                     case 1:
                         rating1 = "★☆☆☆☆";
                         break;
@@ -46,7 +51,7 @@ export default function MainSection() {
                         break;
                 }
                 let rating2 = "☆☆☆☆☆";
-                switch (data.get("testimonial2").rating) {
+                switch (data.testimonial2.rating) {
                     case 1:
                         rating2 = "★☆☆☆☆";
                         break;
@@ -64,7 +69,7 @@ export default function MainSection() {
                         break;
                 }
 
-                setTestimonials([data.get("testimonial1"), data.get("testimonial2")]);
+                setTestimonials([data.testimonial1, data.testimonial2]);
                 setRatings([rating1, rating2]);
             }
             catch (error) {
@@ -84,30 +89,34 @@ export default function MainSection() {
                 <h2>Featured Courses</h2>
                 <table border = "0">
                     <tr>
-                        <td width = "33%">
-                            <img src = {require(`../images/${firstCourse.image}`)} width = "100%" /><br></br>
-                            Course ID: {firstCourse.id}<br></br><br></br>
-                            Course Name: {firstCourse.name}<br></br><br></br>
-                            Instructor: {firstCourse.instructor}<br></br><br></br>
-                            Description: {firstCourse.description}<br></br><br></br>
-                            Duration: {firstCourse.duration}<br></br><br></br>
-                        </td>
-                        <td width = "33%">
-                            <img src = {require(`../images/${secondCourse.image}`)} width = "100%" /><br></br>
-                            Course ID: {secondCourse.id}<br></br><br></br>
-                            Course Name: {secondCourse.name}<br></br><br></br>
-                            Instructor: {secondCourse.instructor}<br></br><br></br>
-                            Description: {secondCourse.description}<br></br><br></br>
-                            Duration: {secondCourse.duration}<br></br><br></br>
-                        </td>
-                        <td width = "33%">
-                            <img src = {require(`../images/${thirdCourse.image}`)} width = "100%" /><br></br>
-                            Course ID: {thirdCourse.id}<br></br><br></br>
-                            Course Name: {thirdCourse.name}<br></br><br></br>
-                            Instructor: {thirdCourse.instructor}<br></br><br></br>
-                            Description: {thirdCourse.description}<br></br><br></br>
-                            Duration: {thirdCourse.duration}<br></br><br></br>
-                        </td>
+                        {courses.length > 0 && (
+                        <>    
+                            <td width = "33%">
+                                <img src = {require(`../images/${courses[0].image}`)} width = "100%" /><br></br>
+                                Course ID: {courses[0].id}<br></br><br></br>
+                                Course Name: {courses[0].name}<br></br><br></br>
+                                Instructor: {courses[0].instructor}<br></br><br></br>
+                                Description: {courses[0].description}<br></br><br></br>
+                                Duration: {courses[0].duration}<br></br><br></br>
+                            </td>
+                            <td width = "33%">
+                                <img src = {require(`../images/${courses[1].image}`)} width = "100%" /><br></br>
+                                Course ID: {courses[1].id}<br></br><br></br>
+                                Course Name: {courses[1].name}<br></br><br></br>
+                                Instructor: {courses[1].instructor}<br></br><br></br>
+                                Description: {courses[1].description}<br></br><br></br>
+                                Duration: {courses[1].duration}<br></br><br></br>
+                            </td>
+                            <td width = "33%">
+                                <img src = {require(`../images/${courses[2].image}`)} width = "100%" /><br></br>
+                                Course ID: {courses[2].id}<br></br><br></br>
+                                Course Name: {courses[2].name}<br></br><br></br>
+                                Instructor: {courses[2].instructor}<br></br><br></br>
+                                Description: {courses[2].description}<br></br><br></br>
+                                Duration: {courses[2].duration}<br></br><br></br>
+                            </td>
+                        </>
+                        )}
                     </tr>
                 </table>
             </div>
@@ -115,18 +124,22 @@ export default function MainSection() {
                 <h2>Testimonials</h2>
                 <table border = "0" width = "100%">
                     <tr>
-                        <td>
-                            Student Name: {testimonials[0].studentName}<br></br><br></br>
-                            Course Name: {testimonials[0].courseName}<br></br><br></br>
-                            Review: {testimonials[0].review}<br></br><br></br>
-                            Rating: {ratings[0]}<br></br><br></br>
-                        </td>
-                        <td>
-                            Student Name: {testimonials[1].studentName}<br></br><br></br>
-                            Course Name: {testimonials[1].courseName}<br></br><br></br>
-                            Review: {testimonials[1].review}<br></br><br></br>
-                            Rating: {ratings[1]}<br></br><br></br>
-                        </td>
+                        {testimonials.length > 0 && ratings.length > 0 && (
+                        <>
+                            <td>
+                                Student Name: {testimonials[0].studentName}<br></br><br></br>
+                                Course Name: {testimonials[0].courseName}<br></br><br></br>
+                                Review: {testimonials[0].review}<br></br><br></br>
+                                Rating: {ratings[0]}<br></br><br></br>
+                            </td>
+                            <td>
+                                Student Name: {testimonials[1].studentName}<br></br><br></br>
+                                Course Name: {testimonials[1].courseName}<br></br><br></br>
+                                Review: {testimonials[1].review}<br></br><br></br>
+                                Rating: {ratings[1]}<br></br><br></br>
+                            </td>
+                        </>
+                        )}
                     </tr>
                 </table>
             </div>

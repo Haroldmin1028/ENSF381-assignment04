@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import random
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -47,7 +48,9 @@ def login():
 # receive data from testimonials.json
 @app.route('/testimonials', methods = ['GET'])
 def testimonials():
-    with open('testimonials.json') as f:
+    directory = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(directory, 'testimonials.json');
+    with open(filepath) as f:
         data = json.load(f)
     random.shuffle(data)
     testimonial1 = data[0]
@@ -82,9 +85,17 @@ def delete_courses(student_id):
 
 @app.route('/courses', methods = ['GET'])
 def get_courses():
-    with open('courses.json') as f:
+    directory = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(directory, 'courses.json');
+    with open(filepath) as f:
         data = json.load(f)
-    return jsonify(data)
+    # says to return all courses, but in assignment 4 we only displaying 3 of the courses?
+    # assumed it was similar to testimonials
+    random.shuffle(data)
+    course1 = data[0]
+    course2 = data[1]
+    course3 = data[2]
+    return jsonify({"course1": course1, "course2": course2, "course3": course3})
 
 @app.route('/student_courses/<student_id>', methods = ['GET'])
 def student_courses(student_id):
