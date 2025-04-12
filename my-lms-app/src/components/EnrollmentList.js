@@ -5,15 +5,31 @@ const EnrollmentList = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   useEffect(() => {
-    const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses")) || [];
-    setEnrolledCourses(savedCourses);
+    const student_id = localStorage.getItem('student_id');
+
+    fetch(`http://localhost:5000/student_courses/${student_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+      setEnrolledCourses(data.courses);
+      });
   }, []);
 
-  const dropCourse = (courseToDrop) => {
-    const updatedCourses = enrolledCourses.filter((course) => course.id !== courseToDrop.id);
-    setEnrolledCourses(updatedCourses);
-    localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
-  };
+  const dropCourse = (courseId) => {
+    const student_id = localStorage.getItem('student_id');
+
+    fetch(`http://localhost:5000/drop/${student_id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ course_to_delete: courseId }),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.success) {
+      // remove course from local state
+      setEnrolledCourses((prev) => prev.filter((c) => c.id !== courseId));
+    }
+  });
+};
 
   const getDurationFromWeeks = (durationString) => {
     const match = durationString.match(/(\d+)\s*week(s?)/);
