@@ -1,10 +1,7 @@
-import React from 'react';
-import {courses} from '../backend/courses.json';
-import {testimonials} from '../backend/testimonials.json';
+import React, {useState, useEffect} from 'react';
 
 export default function MainSection() {
-    const courses = require('../backend/courses.json');
-    const testimonials = require('../backend/testimonials.json');
+    const courses = require('../backend/courses.json'); 
 
     var courseList = [];
     while (courseList.length < 3) {
@@ -17,54 +14,65 @@ export default function MainSection() {
     var secondCourse = courses[courseList[1]];
     var thirdCourse = courses[courseList[2]];
 
-    var testimonialList = [];
-    while (testimonialList.length < 2) {
-        const index = Math.floor(Math.random() * 4);
-        if (!testimonialList.includes(index)) {
-            testimonialList.push(index);
-        }
-    }
-    var firstTestimonial = testimonials[testimonialList[0]];
-    var secondTestimonial = testimonials[testimonialList[1]];
-    const oneStar = "★☆☆☆☆";
-    const twoStar = "★★☆☆☆";
-    const threeStar = "★★★☆☆";
-    const fourStar = "★★★★☆";
-    const fiveStar = "★★★★★";
-    var firstRating = "";
-    var secondRating = "";
-    
-    if (firstTestimonial.rating == 1) {
-        firstRating = oneStar;
-    }
-    else if (firstTestimonial.rating == 2) {
-        firstRating = twoStar;
-    }
-    else if (firstTestimonial.rating == 3) {
-        firstRating = threeStar;
-    }
-    else if (firstTestimonial.rating == 4) {
-        firstRating = fourStar;
-    }
-    else if (firstTestimonial.rating == 5) {
-        firstRating = fiveStar;
-    }
+    const [testimonials, setTestimonials] = useState([]);
+    const [ratings, setRatings] = useState([]);
 
-    if (secondTestimonial.rating == 1) {
-        secondRating = oneStar;
-    }
-    else if (secondTestimonial.rating == 2) {
-        secondRating = twoStar;
-    }
-    else if (secondTestimonial.rating == 3) {
-        secondRating = threeStar;
-    }
-    else if (secondTestimonial.rating == 4) {
-        secondRating = fourStar;
-    }
-    else if (secondTestimonial.rating == 5) {
-        secondRating = fiveStar;
-    }
+    useEffect(() => {
+        async function fetchTestimonials() {
+            const backend = 'http://127.0.0.1:5000/testimonials';
+            try {
+                const response = await fetch(backend, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const data = await response.json();
+
+                let rating1 = "☆☆☆☆☆";
+                switch (data.get("testimonial1").rating) {
+                    case 1:
+                        rating1 = "★☆☆☆☆";
+                        break;
+                    case 2:
+                        rating1 = "★★☆☆☆";
+                        break;
+                    case 3:
+                        rating1 = "★★★☆☆";
+                        break;
+                    case 4:
+                        rating1 = "★★★★☆";
+                        break;
+                    case 5:
+                        rating1 = "★★★★★";
+                        break;
+                }
+                let rating2 = "☆☆☆☆☆";
+                switch (data.get("testimonial2").rating) {
+                    case 1:
+                        rating2 = "★☆☆☆☆";
+                        break;
+                    case 2:
+                        rating2 = "★★☆☆☆";
+                        break;
+                    case 3:
+                        rating2 = "★★★☆☆";
+                        break;
+                    case 4:
+                        rating2 = "★★★★☆";
+                        break;
+                    case 5:
+                        rating2 = "★★★★★";
+                        break;
+                }
+
+                setTestimonials([data.get("testimonial1"), data.get("testimonial2")]);
+                setRatings([rating1, rating2]);
+            }
+            catch (error) {
+                console.error('Error fetching testimonials: ', error);
+            }
+        }
+        fetchTestimonials();
+    }, []);
 
     return (
         <div>
@@ -108,16 +116,16 @@ export default function MainSection() {
                 <table border = "0" width = "100%">
                     <tr>
                         <td>
-                            Student Name: {firstTestimonial.studentName}<br></br><br></br>
-                            Course Name: {firstTestimonial.courseName}<br></br><br></br>
-                            Review: {firstTestimonial.review}<br></br><br></br>
-                            Rating: {firstRating}<br></br><br></br>
+                            Student Name: {testimonials[0].studentName}<br></br><br></br>
+                            Course Name: {testimonials[0].courseName}<br></br><br></br>
+                            Review: {testimonials[0].review}<br></br><br></br>
+                            Rating: {ratings[0]}<br></br><br></br>
                         </td>
                         <td>
-                            Student Name: {secondTestimonial.studentName}<br></br><br></br>
-                            Course Name: {secondTestimonial.courseName}<br></br><br></br>
-                            Review: {secondTestimonial.review}<br></br><br></br>
-                            Rating: {secondRating}<br></br><br></br>
+                            Student Name: {testimonials[1].studentName}<br></br><br></br>
+                            Course Name: {testimonials[1].courseName}<br></br><br></br>
+                            Review: {testimonials[1].review}<br></br><br></br>
+                            Rating: {ratings[1]}<br></br><br></br>
                         </td>
                     </tr>
                 </table>

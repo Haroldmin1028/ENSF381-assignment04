@@ -1,15 +1,8 @@
 import { createContext } from 'react';
-import React, {useState, useEffect} from 'react';
-import AuthMessage from '../components/AuthMessage.js';
+import React, {useState} from 'react';
 import DisplayStatus from '../components/DisplayStatus.js';
 
 export const AuthContext = createContext();
-
-async function verifyLogin(event) {
-    
-    
-    
-}
 
 function LoginForm () {
     const [inputUsername, setInputUsername] = useState('');
@@ -57,7 +50,7 @@ function LoginForm () {
             }
         }
         catch (error) {
-            console.error('Error in submission');
+            console.error('Error in submission: ', error);
         }
         finally {
             setIsLoading(false);

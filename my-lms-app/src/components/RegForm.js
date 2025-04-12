@@ -26,29 +26,64 @@ function validateEmail(email) {
 
 function RegForm() {
     const [popup, setPopup] = useState();
-    const validateInputs = () => {
-        var popupContent = ''
-        const username = document.getElementById("name").value;
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
-        const email = document.getElementById("email").value;
+    const [inputUsername, setInputUsername] = useState('');
+    const [inputPassword, setInputPassword] = useState('');
+    const [inputConfirmPassword, setInputConfirmPassword] = useState('');
+    const [inputEmail, setInputEmail] = useState('');
+    const [statusType, setStatusType] = useState('success');
+    const [isLoading, setIsLoading] = useState(false);
 
-        const checkUsername = validateUsername(username);
-        const checkPassword = validatePassword(password);
+    async function validateInputs(event) {
+        event.preventDefault();
+        const backend = 'http://127.0.0.1:5000/register';
+        let popupContent = '';
+        const checkUsername = validateUsername(inputUsername);
+        const checkPassword = validatePassword(inputPassword);
         const doNotMatch = `Passwords do not match!`;
-        const checkEmail = validateEmail(email);
+        const checkEmail = validateEmail(inputEmail);
         const success =`Signup successful! Redirecting to login...`;
 
-        if (checkUsername === '' && checkPassword === '' && password === confirmPassword && checkEmail === '') {
-            popupContent += success;
-            setTimeout(() => {window.location.href = "/login";}, 2000);
-        }
-        if (checkUsername) {popupContent += checkUsername + '\n';}
-        if (checkPassword) {popupContent += checkPassword + '\n';}
-        if (password !== confirmPassword) {popupContent += doNotMatch + '\n';}
-        if (checkEmail) {popupContent += checkEmail + '\n';}
+        if (checkUsername || checkPassword || inputPassword !== inputConfirmPassword || checkEmail) {
 
-        setPopup(popupContent);
+            if (checkUsername) {popupContent += checkUsername + '\n';}
+            if (checkPassword) {popupContent += checkPassword + '\n';}
+            if (inputPassword !== inputConfirmPassword) {popupContent += doNotMatch + '\n';}
+            if (checkEmail) {popupContent += checkEmail + '\n';}
+            setPopup(popupContent);
+            setStatusType("error");
+            return;
+        }
+        setIsLoading(true);
+
+        try {
+            const response = await fetch(backend, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username: inputUsername,
+                    password: inputPassword,
+                    email: inputEmail
+                })
+            });
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                popupContent += success;
+                setPopup(popupContent);
+                setStatusType("success");
+                setTimeout(() => {window.location.href = "/login";}, 2000);
+            }
+            else {
+                setPopup('Registration submission failed.');
+                setStatusType("error");
+            }
+        }
+        catch (error) {
+            console.error('Error in submission: ', error);
+        }
+        finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -57,19 +92,19 @@ function RegForm() {
             <form>
                 <div class = "login">
                     <label for="name">Username:</label>
-                    <input type="text" id="name" name="username" required></input>
+                    <input type="text" id="name" name="username" value={inputUsername} onChange={(e)=>setInputUsername(e.target.value)} required></input>
                     <br/>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required></input>
+                    <input type="password" id="password" name="password" value={inputPassword} onChange={(e)=>setInputPassword(e.target.value)} required></input>
                     <br/>
                     <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="password" required></input>
+                    <input type="password" id="confirmPassword" name="password" value={inputConfirmPassword} onChange={(e)=>setInputConfirmPassword(e.target.value)} required></input>
                     <br/>
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" required></input>
+                    <input type="text" id="email" name="email" value={inputEmail} onChange={(e)=>setInputEmail(e.target.value)} required></input>
                 </div>
                 <br/>
-                <input type="button" value = "Sign Up" className = "signupbutton" onClick = {validateInputs}></input>
+                <input type="submit" value = "Sign Up" className = "signupbutton" onClick = {validateInputs} disabled = {isLoading}></input>
             </form>
             <br/>
             <div id="signup-popup">{popup}</div>

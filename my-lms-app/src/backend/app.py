@@ -11,7 +11,6 @@ students = [
     {"id": "2", "username": "user2", "password": "password2", "email": "email2", "courses": []}
 ]
 
-
 @app.route('/register', methods = ['POST'])
 def register():
     data = request.get_json()
@@ -24,12 +23,13 @@ def register():
             return jsonify({"success": False, "message": "Username is already taken"})
     
     students.append({
-        "id": str(len(students)),
+        "id": str(len(students) + 1),
         "username": username,
         "password": password,
         "email": email,
         "courses": []
     })
+    #verify sign up info was saved: print(students)
     return jsonify({"success": True, "message": "Signup successful"})
 
 @app.route('/login', methods = ['POST'])
