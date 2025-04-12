@@ -6,11 +6,14 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+'''
 students = [
     {"id": "1", "username": "user1", "password": "password1", "email": "email1", "courses": ["course1", "course2"]},
     {"id": "2", "username": "user2", "password": "password2", "email": "email2", "courses": []}
 ]
+'''
 
+students = []
 
 @app.route('/register', methods = ['POST'])
 def register():
