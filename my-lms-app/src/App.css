@@ -264,6 +264,18 @@ form a {
   display: flex;
   justify-content: center;
   background-color: #ffffff;
+  white-space: pre-wrap;
+  border: 2px solid gray;
+  padding: 10px;
+}
+
+#login-popup {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  white-space: pre-wrap;
+  border: 2px solid gray;
+  padding: 10px;
 }
 
 footer {

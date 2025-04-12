@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function validateUsername(username) {
         if (username.length < 3 || username.length > 20) {return `Invalid username (Must be between 3 and 20 characters long)`;}
@@ -24,40 +24,33 @@ function validateEmail(email) {
     else {return ``;}
 }
 
-function validateInputs() {
-    const signupPopup = document.getElementById('signup-popup');
-    signupPopup.innerHTML = '';
-    const userDiv = document.createElement('div')
-    var username = document.getElementById("name").value;
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    var email = document.getElementById("email").value;
-
-    const checkUsername = document.createElement('p');
-    checkUsername.textContent = validateUsername(username);
-    const checkPassword = document.createElement('p');
-    checkPassword.textContent = validatePassword(password);
-    const doNotMatch = document.createElement('p');
-    doNotMatch.textContent = `Passwords do not match!`;
-    const checkEmail = document.createElement('p');
-    checkEmail.textContent = validateEmail(email);
-    const success = document.createElement('p');
-    success.textContent = `Signup successful! Redirecting to login...`;
-
-    if (checkUsername.textContent == '' && checkPassword.textContent == '' && password == confirmPassword && checkEmail.textContent == '') {
-        userDiv.appendChild(success);
-        signupPopup.appendChild(userDiv);
-        setTimeout(() => {window.location.href = "login.html";}, 2000);
-    }
-    if (checkUsername.textContent != '') {userDiv.appendChild(checkUsername);}
-    if (checkPassword.textContent != '') {userDiv.appendChild(checkPassword);}
-    if (password !== confirmPassword) {userDiv.appendChild(doNotMatch);}
-    if (checkEmail.textContent != '') {userDiv.appendChild(checkEmail);}
-    
-    signupPopup.appendChild(userDiv);
-}
-
 function RegForm() {
+    const [popup, setPopup] = useState();
+    const validateInputs = () => {
+        var popupContent = ''
+        const username = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const email = document.getElementById("email").value;
+
+        const checkUsername = validateUsername(username);
+        const checkPassword = validatePassword(password);
+        const doNotMatch = `Passwords do not match!`;
+        const checkEmail = validateEmail(email);
+        const success =`Signup successful! Redirecting to login...`;
+
+        if (checkUsername === '' && checkPassword === '' && password === confirmPassword && checkEmail === '') {
+            popupContent += success;
+            setTimeout(() => {window.location.href = "/login";}, 2000);
+        }
+        if (checkUsername) {popupContent += checkUsername + '\n';}
+        if (checkPassword) {popupContent += checkPassword + '\n';}
+        if (password !== confirmPassword) {popupContent += doNotMatch + '\n';}
+        if (checkEmail) {popupContent += checkEmail + '\n';}
+
+        setPopup(popupContent);
+    }
+
     return (
         <main>
             <h2>Sign Up</h2>
@@ -65,21 +58,22 @@ function RegForm() {
                 <div class = "login">
                     <label for="name">Username:</label>
                     <input type="text" id="name" name="username" required></input>
-                    <br></br>
+                    <br/>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required></input>
-                    <br></br>
+                    <br/>
                     <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" id="confirmPassword" name="password" required></input>
-                    <br></br>
+                    <br/>
                     <label for="email">Email:</label>
                     <input type="text" id="email" name="email" required></input>
                 </div>
-                <br></br>
-                <input type="button" value="Sign Up" class = "signupbutton" onclick="validateInputs()"></input>
+                <br/>
+                <input type="button" value = "Sign Up" className = "signupbutton" onClick = {validateInputs}></input>
             </form>
-            <br></br>
-            <div id="signup-popup"></div>
+            <br/>
+            <div id="signup-popup">{popup}</div>
+            <br/>
         </main>
     )
 }

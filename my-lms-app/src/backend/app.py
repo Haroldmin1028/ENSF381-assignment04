@@ -6,29 +6,31 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-#[[id1, username1, password1, email1, [course1, course2, ...]], [id2, username2,...]] OR
-#{id1: [username1, password1, email1, [course1, course2, ...], id2: []]}
+students = [
+    {"id": "1", "username": "user1", "password": "password1", "email": "email1", "courses": ["course1", "course2"]},
+    {"id": "2", "username": "user2", "password": "password2", "email": "email2", "courses": []}
+]
 
-#looking at the slides from the lecture, maybe an array of dictionaries is better
-# students = [
-#    {"id": "1", "username": "user1", "password": "pass1", "email": "email1", "courses": ["course1", "course2"]},
-#    {"id": "2", "username": "user2", "password": "pass2", "email": "email2", "courses": []}
-# ]
-students = []
 
 @app.route('/register', methods = ['POST'])
 def register():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
+    email = data.get('email')
 
-    if username in students:
-        return jsonify({"success": False, "message": "Username is already taken"})
-    else:
-        students[username] = password # wrong cuz more info will be stored
-        return jsonify({"success": True, "message": "Signup successful"})
-
+    for student in students:
+        if student['username'] == username:
+            return jsonify({"success": False, "message": "Username is already taken"})
     
+    students.append({
+        "id": str(len(students)),
+        "username": username,
+        "password": password,
+        "email": email,
+        "courses": []
+    })
+    return jsonify({"success": True, "message": "Signup successful"})
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -36,10 +38,10 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    if username in students and students[username] == password:
-        return jsonify({"success": True, "message": "Login successful"})
-    else:
-        return jsonify({"success": False, "message": "Invalid username or password"})
+    for student in students:
+        if student['username'] == username and student['password'] == password:
+            return jsonify({"success": True, "message": "Login successful"})
+    return jsonify({"success": False, "message": "Invalid username or password"})
 
 
 # receive data from testimonials.json

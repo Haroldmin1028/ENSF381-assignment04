@@ -5,6 +5,12 @@ import DisplayStatus from '../components/DisplayStatus.js';
 
 export const AuthContext = createContext();
 
+async function verifyLogin(event) {
+    
+    
+    
+}
+
 function LoginForm () {
     const [inputUsername, setInputUsername] = useState('');
     const [inputPassword, setInputPassword] = useState('');
@@ -12,8 +18,10 @@ function LoginForm () {
     const [statusType, setStatusType] = useState("success");
     const [isLoading, setIsLoading] = useState(false);
 
+    async function verifyLogin(event) {
+        event.preventDefault();
+        const backend = 'http://127.0.0.1:5000/login';
 
-    function verifyLogin() {
         if (inputUsername == '' || inputPassword == '') {
             setPopup('Username and password required.');
             setStatusType("error");
@@ -27,20 +35,18 @@ function LoginForm () {
 
         setIsLoading(true);
 
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then((response) => response.json())
-        .then((data) => {
-            let i = 0;
-            while (i < data.length) {
-                const username = data[i].username;
-                const password = data[i].email;
-                    if (inputUsername === username && inputPassword === password) {
-                            break;
-                    }
-                i++;
-            }
-
-            if (i != data.length) {
+        try {
+            const response = await fetch(backend, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username: inputUsername,
+                    password: inputPassword
+                })
+            });
+            const data = await response.json();
+                
+            if (response.ok && data.success) {
                 setPopup('Login successful! Redirecting...');
                 setStatusType("success");
                 setTimeout(() => {window.location.href = "/courses";}, 2000);
@@ -49,16 +55,14 @@ function LoginForm () {
                 setPopup('Invalid username or password!');
                 setStatusType("error");
             }
-            
-        })
-        .catch((error) => {
-            console.error(error.message);
-            setStatusType("error");
-        })
-        .finally(() => {
+        }
+        catch (error) {
+            console.error('Error in submission');
+        }
+        finally {
             setIsLoading(false);
-        });
-    }
+        }    
+    };
 
     return (
         <AuthContext.Provider value={{ username: inputUsername, password: inputPassword }}>
@@ -68,17 +72,17 @@ function LoginForm () {
                     <h2>Login</h2>
                     <label for="name">Username:</label>
                     <input type="text" id="name" name="username" value={inputUsername} onChange={(e)=>setInputUsername(e.target.value)} required></input>
-                    <br></br>
+                    <br/>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" value={inputPassword} onChange={(e)=>setInputPassword(e.target.value)} required></input>
-                    <br></br>
+                    <br/>
                 </div>
-                <br></br>
-                <input type="submit" value="Login" class="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
-                <br></br>
-                <a href = "">Forgot Password?</a>
+                <br/>
+                <input type="submit" value="Login" className="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
+                <br/>
+                <a href = "/signup">Forgot Password?</a>
             </form>
-            
+            <br/>
             {popup && (<div class = "login-popup"><DisplayStatus message={popup} type={statusType}/></div>)}
 
         </main>
