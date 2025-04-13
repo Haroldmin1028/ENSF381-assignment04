@@ -70,8 +70,11 @@ def enroll_courses(student_id):
 
     for student in students:
         if student['id'] == student_id:
-            student['courses'].append(new_course)
-            return jsonify({"success": True, "message": "Courses enrolled successfully"})
+            if new_course not in student['courses']:
+                student['courses'].append(new_course)
+                return jsonify({"success": True, "message": "Courses enrolled successfully"})
+            else:
+                return jsonify({"success": False, "message": "Already enrolled in this course"})
     return jsonify({"success": False, "message": "Person not found"})
 
 
@@ -96,11 +99,11 @@ def get_courses():
         data = json.load(f)
     # says to return all courses, but in assignment 4 we only displaying 3 of the courses?
     # assumed it was similar to testimonials
+
+    # i returned all courses bcuz in Course Catalog we can see all courses
+    #you can use data[index] if you only want to return 3 courses in MainSection.js
     random.shuffle(data)
-    course1 = data[0]
-    course2 = data[1]
-    course3 = data[2]
-    return jsonify({"course1": course1, "course2": course2, "course3": course3})
+    return jsonify(data)
 
 @app.route('/student_courses/<student_id>', methods = ['GET'])
 def student_courses(student_id):

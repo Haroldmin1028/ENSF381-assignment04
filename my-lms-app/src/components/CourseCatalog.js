@@ -1,26 +1,38 @@
 import React, { useState, useEffect} from "react";
 import CourseItem from "./CourseItem";
-import courses from "../backend/courses.json";
+
 
 
 const CourseCatalog = () => {
-  const [enrolledCourses, setEnrolledCourses] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [enrolledCourses, setEnrolledCourses] = useState([]);
 
-  useEffect(() => {
-      const savedCourses = JSON.parse(localStorage.getItem("enrolledCourses"));
-      if (savedCourses) {
-        setEnrolledCourses(savedCourses);
-      }
+    useEffect(() => {
+        fetch("http://localhost:5000/courses")
+        .then((res) => res.json())
+        .then((data) => {
+          setCourses([data.course1, data.course2, data.course3]);
+        })
+        .catch((err) => console.error("Error fetching courses:", err));
     }, []);
 
   const enroll = (course) => {
-    const isCourseEnrolled = enrolledCourses.some((enrolledCourse) => enrolledCourse.id === course.id);
-    if (!isCourseEnrolled) {
-        const updatedCourses = [...enrolledCourses, course];
-        setEnrolledCourses(updatedCourses);
-        localStorage.setItem('enrolledCourses', JSON.stringify(updatedCourses));
+    const student_id = localStorage.getItem('student_id');
+
+  fetch(`http://localhost:5000/enroll/${student_id}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ new_course: course }),
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message)
+    } else{
+        alert(data.message)
     }
-  };
+  });
+};
 
   return (
     <div className="course-catalog">
@@ -28,13 +40,13 @@ const CourseCatalog = () => {
       <table className="course-table">
       <tr>
             <td width = "33%">
-                <CourseItem course={courses[0]} enroll={enroll} isEnrolled={enrolledCourses.some((enrolledCourse)=>enrolledCourse.id === courses[0].id)}/>
+                <CourseItem course={courses[0]} enroll={enroll} isEnrolled={courses.some((enrolledCourse)=>enrolledCourse.id === courses[0].id)}/>
             </td>
             <td width = "33%">
-                <CourseItem course={courses[1]} enroll={enroll} isEnrolled={enrolledCourses.some((enrolledCourse)=>enrolledCourse.id === courses[1].id)}/>
+                <CourseItem course={courses[1]} enroll={enroll} isEnrolled={courses.some((enrolledCourse)=>enrolledCourse.id === courses[1].id)}/>
             </td>
             <td width = "33%">
-                <CourseItem course={courses[2]} enroll={enroll} isEnrolled={enrolledCourses.some((enrolledCourse)=>enrolledCourse.id === courses[2].id)}/>
+                <CourseItem course={courses[2]} enroll={enroll} isEnrolled={courses.some((enrolledCourse)=>enrolledCourse.id === courses[2].id)}/>
             </td>
         </tr>
         <tr>

@@ -15,7 +15,8 @@ export default function MainSection() {
                     headers: {'Content-Type': 'application/json'}
                 });
                 const data = await response.json();
-                setCourses([data.course1, data.course2, data.course3])
+                // i modify the data to get the first three courses since it's shuffled in the backend
+                setCourses([data[0], data[1], data[2]])
             }
             catch (error) {
                 console.error("Error fetching courses: ", error)
