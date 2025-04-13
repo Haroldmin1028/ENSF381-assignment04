@@ -8,27 +8,30 @@ const EnrollmentList = () => {
     const student_id = localStorage.getItem('student_id');
 
     fetch(`http://localhost:5000/student_courses/${student_id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    .then((res) => res.json())
+    .then((data) => {
       setEnrolledCourses(data.courses);
-      });
+    });
   }, []);
 
-  const dropCourse = (courseId) => {
+  const dropCourse = (course_to_delete) => {
     const student_id = localStorage.getItem('student_id');
 
     fetch(`http://localhost:5000/drop/${student_id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ course_to_delete: courseId }),
-  })
-  .then((res) => res.json())
-  .then((data) => {
+    body: JSON.stringify({ course_to_delete: course_to_delete }),
+    })
+    .then((res) => res.json())
+    .then((data) => {   
     if (data.success) {
       // remove course from local state
-      setEnrolledCourses((prev) => prev.filter((c) => c.id !== courseId));
+      setEnrolledCourses(enrolledCourses.filter(course => course.id !== course_to_delete.id));
+      alert(data.message);
+    } else {
+      alert(data.message);
     }
-  });
+    });
 };
 
   const getDurationFromWeeks = (durationString) => {

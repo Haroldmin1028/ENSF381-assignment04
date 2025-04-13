@@ -26,7 +26,7 @@ const CourseCatalog = () => {
         })
         .then(res => res.json())
         .then(data => {
-            setEnrolledCourses(data.enrolledCourses);
+            setEnrolledCourses(enrolledCourses => [...enrolledCourses, course]);
             if (data.success) {
                 alert(data.message)
             } else{

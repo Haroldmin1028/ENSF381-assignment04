@@ -63,7 +63,7 @@ def enroll_courses(student_id):
         if student['id'] == student_id:
             if new_course not in student['courses']:
                 student['courses'].append(new_course)
-                return jsonify({"success": True, "message": "Courses enrolled successfully\nRefresh to dispay changes"})
+                return jsonify({"success": True, "message": "Courses enrolled successfully\n\nRefresh to display changes"})
             else:
                 return jsonify({"success": False, "message": "Already enrolled in this course"})
     return jsonify({"success": False, "message": "Person not found"})   
@@ -77,8 +77,8 @@ def delete_courses(student_id):
     for student in students:
         if student['id'] == student_id:
             student['courses'].remove(course_to_delete)
-            return jsonify({"success": True, "message": "Course deleted successfully\nRefresh to dispay changes"})
-    return jsonify({"success": False, "message": "Person not found"})
+            return jsonify({"success": True, "message": "Course deleted successfully"})
+    return jsonify({"success": False, "message": "You're not enrolled in this course"})
 
 
 @app.route('/courses', methods = ['GET'])
