@@ -98,7 +98,7 @@ function RegForm() {
                     <input type="password" id="password" name="password" value={inputPassword} onChange={(e)=>setInputPassword(e.target.value)} required></input>
                     <br/>
                     <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="password" value={inputConfirmPassword} onChange={(e)=>setInputConfirmPassword(e.target.value)} required></input>
+                    <input type="password" id="confirmPassword" name="confirmPassword" value={inputConfirmPassword} onChange={(e)=>setInputConfirmPassword(e.target.value)} required></input>
                     <br/>
                     <label for="email">Email:</label>
                     <input type="text" id="email" name="email" value={inputEmail} onChange={(e)=>setInputEmail(e.target.value)} required></input>

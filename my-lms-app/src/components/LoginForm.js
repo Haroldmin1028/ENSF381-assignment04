@@ -15,7 +15,7 @@ function LoginForm () {
         event.preventDefault();
         const backend = 'http://127.0.0.1:5000/login';
 
-        if (inputUsername == '' || inputPassword == '') {
+        if (inputUsername === '' || inputPassword === '') {
             setPopup('Username and password required.');
             setStatusType("error");
             return;
