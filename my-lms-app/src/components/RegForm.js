@@ -30,7 +30,6 @@ function RegForm() {
     const [inputPassword, setInputPassword] = useState('');
     const [inputConfirmPassword, setInputConfirmPassword] = useState('');
     const [inputEmail, setInputEmail] = useState('');
-    const [statusType, setStatusType] = useState('success');
     const [isLoading, setIsLoading] = useState(false);
 
     async function validateInputs(event) {
@@ -50,7 +49,6 @@ function RegForm() {
             if (inputPassword !== inputConfirmPassword) {popupContent += doNotMatch + '\n';}
             if (checkEmail) {popupContent += checkEmail + '\n';}
             setPopup(popupContent);
-            setStatusType("error");
             return;
         }
         setIsLoading(true);
@@ -70,12 +68,10 @@ function RegForm() {
             if (response.ok && data.success) {
                 popupContent += success;
                 setPopup(popupContent);
-                setStatusType("success");
                 setTimeout(() => {window.location.href = "/login";}, 2000);
             }
             else {
                 setPopup('Registration submission failed.');
-                setStatusType("error");
             }
         }
         catch (error) {

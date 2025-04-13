@@ -92,7 +92,7 @@ export default function MainSection() {
                         {courses.length > 0 && (
                         <>    
                             <td width = "33%">
-                                <img src = {require(`../images/${courses[0].image}`)} width = "100%" /><br></br>
+                                <img src = {require(`../images/${courses[0].image}`)} width = "100%" alt={courses[0].name}/><br></br>
                                 Course ID: {courses[0].id}<br></br><br></br>
                                 Course Name: {courses[0].name}<br></br><br></br>
                                 Instructor: {courses[0].instructor}<br></br><br></br>
@@ -100,15 +100,15 @@ export default function MainSection() {
                                 Duration: {courses[0].duration}<br></br><br></br>
                             </td>
                             <td width = "33%">
-                                <img src = {require(`../images/${courses[1].image}`)} width = "100%" /><br></br>
+                                <img src = {require(`../images/${courses[1].image}`)} width = "100%" alt={courses[1].name}/><br></br>
                                 Course ID: {courses[1].id}<br></br><br></br>
                                 Course Name: {courses[1].name}<br></br><br></br>
                                 Instructor: {courses[1].instructor}<br></br><br></br>
                                 Description: {courses[1].description}<br></br><br></br>
                                 Duration: {courses[1].duration}<br></br><br></br>
                             </td>
-                            <td width = "33%">
-                                <img src = {require(`../images/${courses[2].image}`)} width = "100%" /><br></br>
+                            <td width = "33%">  
+                                <img src = {require(`../images/${courses[2].image}`)} width = "100%" alt={courses[2].name}/><br></br>
                                 Course ID: {courses[2].id}<br></br><br></br>
                                 Course Name: {courses[2].name}<br></br><br></br>
                                 Instructor: {courses[2].instructor}<br></br><br></br>
