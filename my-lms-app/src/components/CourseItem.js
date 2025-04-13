@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
 const CourseItem = ({ course, enroll, isEnrolled }) => {
-  const [showDescription, setShowDescription] = useState(false);
+    const [showDescription, setShowDescription] = useState(false);
+    
+    console.log("Rendering course:", course);
+    if (!course) return null;
 
   return (
     <div
