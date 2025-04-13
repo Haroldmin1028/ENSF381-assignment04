@@ -83,6 +83,7 @@ def delete_courses(student_id):
     for student in students:
         if student['id'] == student_id:
             student['courses']= [course for course in students['courses'] if course != course_to_delete] # assuming student[4] is the list of courses
+            # or student['courses'].remove(course_to_delete)
             return jsonify({"success": True, "message": "Course deleted successfully"})
     return jsonify({"success": False, "message": "Person not found"})
 
