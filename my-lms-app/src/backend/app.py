@@ -74,7 +74,7 @@ def enroll_courses(student_id):
                 student['courses'].append(new_course)
                 return jsonify({"success": True, "message": "Courses enrolled successfully"})
             else:
-                return jsonify({"success": False, "message": "Already enrolled in this course"})
+                return jsonify({"success": False, "message": "Already enrolled in this course", "enrolledCourses": student['courses']})
     return jsonify({"success": False, "message": "Person not found"})
 
 
@@ -85,8 +85,7 @@ def delete_courses(student_id):
 
     for student in students:
         if student['id'] == student_id:
-            student['courses']= [course for course in students['courses'] if course != course_to_delete] # assuming student[4] is the list of courses
-            # or student['courses'].remove(course_to_delete)
+            student['courses'].remove(course_to_delete)
             return jsonify({"success": True, "message": "Course deleted successfully"})
     return jsonify({"success": False, "message": "Person not found"})
 
@@ -94,7 +93,7 @@ def delete_courses(student_id):
 @app.route('/courses', methods = ['GET'])
 def get_courses():
     directory = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(directory, 'courses.json');
+    filepath = os.path.join(directory, 'courses.json')
     with open(filepath) as f:
         data = json.load(f)
     # says to return all courses, but in assignment 4 we only displaying 3 of the courses?
