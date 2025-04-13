@@ -11,7 +11,7 @@ const CourseCatalog = () => {
         fetch("http://localhost:5000/courses")
         .then((res) => res.json())
         .then((data) => {
-          setCourses([data.course1, data.course2, data.course3]);
+          setCourses(data);
         })
         .catch((err) => console.error("Error fetching courses:", err));
     }, []);
@@ -38,7 +38,8 @@ const CourseCatalog = () => {
     <div className="course-catalog">
       <h2>Available Courses</h2>
       <table className="course-table">
-      <tr>
+      {courses.length > 0 && (<><tr>
+        
             <td width = "33%">
                 <CourseItem course={courses[0]} enroll={enroll} isEnrolled={courses.some((enrolledCourse)=>enrolledCourse.id === courses[0].id)}/>
             </td>
@@ -79,7 +80,7 @@ const CourseCatalog = () => {
             </td>
             <td width = "33%">
             </td>
-        </tr>
+        </tr></>)}
       </table>
     </div>
   );
