@@ -7,13 +7,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-'''
-students = [
-    {"id": "1", "username": "user1", "password": "password1", "email": "email1", "courses": ["course1", "course2"]},
-    {"id": "2", "username": "user2", "password": "password2", "email": "email2", "courses": []}
-]
-'''
-
 students = []
 
 @app.route('/register', methods = ['POST'])
@@ -34,7 +27,6 @@ def register():
         "email": email,
         "courses": []
     })
-    #verify sign up info was saved: print(students)
     return jsonify({"success": True, "message": "Signup successful"})
 
 @app.route('/login', methods = ['POST'])
@@ -49,11 +41,10 @@ def login():
     return jsonify({"success": False, "message": "Invalid username or password"})
 
 
-# receive data from testimonials.json
 @app.route('/testimonials', methods = ['GET'])
 def testimonials():
     directory = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(directory, 'testimonials.json');
+    filepath = os.path.join(directory, 'testimonials.json')
     with open(filepath) as f:
         data = json.load(f)
     random.shuffle(data)
@@ -72,10 +63,10 @@ def enroll_courses(student_id):
         if student['id'] == student_id:
             if new_course not in student['courses']:
                 student['courses'].append(new_course)
-                return jsonify({"success": True, "message": "Courses enrolled successfully"})
+                return jsonify({"success": True, "message": "Courses enrolled successfully\nRefresh to dispay changes"})
             else:
-                return jsonify({"success": False, "message": "Already enrolled in this course", "enrolledCourses": student['courses']})
-    return jsonify({"success": False, "message": "Person not found"})
+                return jsonify({"success": False, "message": "Already enrolled in this course"})
+    return jsonify({"success": False, "message": "Person not found"})   
 
 
 @app.route('/drop/<student_id>', methods = ['DELETE'])
@@ -86,7 +77,7 @@ def delete_courses(student_id):
     for student in students:
         if student['id'] == student_id:
             student['courses'].remove(course_to_delete)
-            return jsonify({"success": True, "message": "Course deleted successfully"})
+            return jsonify({"success": True, "message": "Course deleted successfully\nRefresh to dispay changes"})
     return jsonify({"success": False, "message": "Person not found"})
 
 
@@ -96,11 +87,6 @@ def get_courses():
     filepath = os.path.join(directory, 'courses.json')
     with open(filepath) as f:
         data = json.load(f)
-    # says to return all courses, but in assignment 4 we only displaying 3 of the courses?
-    # assumed it was similar to testimonials
-
-    # i returned all courses bcuz in Course Catalog we can see all courses
-    #you can use data[index] if you only want to return 3 courses in MainSection.js
     random.shuffle(data)
     return jsonify(data)
 

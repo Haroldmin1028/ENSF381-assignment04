@@ -15,7 +15,6 @@ export default function MainSection() {
                     headers: {'Content-Type': 'application/json'}
                 });
                 const data = await response.json();
-                // i modify the data to get the first three courses since it's shuffled in the backend
                 setCourses([data[0], data[1], data[2]])
             }
             catch (error) {
