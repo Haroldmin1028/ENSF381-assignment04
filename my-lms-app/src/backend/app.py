@@ -45,7 +45,7 @@ def login():
 
     for student in students:
         if student['username'] == username and student['password'] == password:
-            return jsonify({"success": True, "message": "Login successful"})
+            return jsonify({"success": True, "message": "Login successful", "id": student['id']})
     return jsonify({"success": False, "message": "Invalid username or password"})
 
 

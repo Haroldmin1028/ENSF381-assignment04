@@ -40,6 +40,7 @@ function LoginForm () {
             const data = await response.json();
                 
             if (response.ok && data.success) {
+                localStorage.setItem("student_id", data.id)
                 setPopup('Login successful! Redirecting...');
                 setStatusType("success");
                 setTimeout(() => {window.location.href = "/courses";}, 2000);
@@ -73,7 +74,7 @@ function LoginForm () {
                 <br/>
                 <input type="submit" value="Login" className="loginbutton" onClick={verifyLogin} disabled={isLoading}></input>
                 <br/>
-                <a href = "/signup">Forgot Password?</a>
+                <a href = "/signup">Sign Up</a>
             </form>
             <br/>
             {popup && (<div class = "login-popup"><DisplayStatus message={popup} type={statusType}/></div>)}
